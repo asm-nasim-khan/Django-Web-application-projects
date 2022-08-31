@@ -1,0 +1,160 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Dashboard</title>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+    <link rel="stylesheet" href="{% static 'signup/css/style.css'%}">
+   <link rel="stylesheet" href="{% static 'home/css/style_home.css'%}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<!-- <div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Home</h2>
+				</div>
+			</div>
+		</div> -->
+		
+		<div class="container-fluid px-md-5">
+			<div class="row justify-content-between">
+				<div class="col-md-8 order-md-last">
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<a class="navbar-brand" href='/home'>E-Pathshala <span>An E-Learning Platform Agency</span></a>
+						</div>
+						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+							<form action="#" class="searchform order-lg-last">
+			          <div class="form-group d-flex">
+			            <input type="text" class="form-control pl-3" placeholder="Search">
+			            <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+			          </div>
+			        </form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex">
+					<div class="social-media">
+		    		<p class="mb-0 d-flex">
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+		    		</p>
+	        </div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container-fluid">
+	    
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav m-auto">
+	        	<li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+	        	<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="#">Page 1</a>
+                <a class="dropdown-item" href="#">Page 2</a>
+                <a class="dropdown-item" href="#">Page 3</a>
+                <a class="dropdown-item" href="#">Page 4</a>
+              </div>
+            </li>
+	        	<li class="nav-item"><a href="/course_list" class="nav-link">Courses</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="/signin" class="nav-link">Login</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+</section>
+    <div class="main">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <strong>Message:</strong> {{ message }}
+
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+       </div>
+  {% endfor %}
+        <div class="container">
+            <div class="sign-up-content">
+                <form action="/signup" method="POST" class="signup-form">
+                    {% csrf_token %}
+                    <h2 class="form-title">What type of user are you ?</h2>
+                    <div class="form-radio">
+                        <input type="radio" name="member_level" value="learner" id="learner" checked="checked" />
+                        <label for="learner">Learner</label>
+
+                        <input type="radio" name="member_level" value="trainer" id="trainer" />
+                        <label for="trainer">Trainer</label>
+
+                        <input type="radio" name="member_level" value="admin" id="admin" />
+                        <label for="admin">Admin</label>
+                    </div>
+                    <div class="form-textbox">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" />
+                    </div>
+                    <div class="form-textbox">
+                        <label for="fname">Full name</label>
+                        <input type="text" name="fname" id="fname" />
+                    </div>
+
+                    <div class="form-textbox">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" />
+                    </div>
+
+                    <div class="form-textbox">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                    </div>
+
+                    <div class="form-textbox">
+                        <input type="submit" name="submit" id="submit" class="submit" value="Create account" />
+                    </div>
+                </form>
+                <p class="loginhere">
+                    Already have an account ?<a href="/signin" class="loginhere-link"> Log in</a>
+                </p>
+                
+            </div>
+        </div>
+
+    </div>
+
+
+	
+
+	<script src="{% static 'home/js/jquery.min.js'%}"></script>
+  <script src="{% static 'home/js/popper.js'%}"></script>
+  <script src="{% static 'home/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'home/js/main.js'%}"></script>
+   <!-- JS -->
+   <script src="{% static 'signup/vendor/jquery/jquery.min.js' %}"></script>
+   <script src="{% static 'signup/js/main.js' %}"></script>
+	</body>
+</html>
+
